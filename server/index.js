@@ -19,6 +19,12 @@ app.get('/product/:id', (req, res) => {
   });
 });
 
+app.post();
+
+app.put();
+
+app.delete();
+
 app.get('/getallproducts', (req, res) => {
   queryAllFromDatabase((result, successBool) => {
     res.send(result.concat({ title: `Passed: ${successBool}`, id: 01 }));
