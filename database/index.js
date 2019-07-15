@@ -111,4 +111,4 @@ module.exports = {
   queryDatabase,
   deleteProductInfo,
   getProductInfo
-}
+};
