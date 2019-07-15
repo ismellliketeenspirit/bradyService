@@ -35,9 +35,9 @@ const updateDatabase = (dataArray) => {
       productInfo.save((err, productInfo) => {
         err
           ? (() => {
-              console.log(err);
-              failure = true;
-            })()
+            console.log(err);
+            failure = true;
+          })()
           : null;
       });
     }
@@ -51,6 +51,38 @@ const queryDatabase = (id, cb) => {
     err ? console.log(err) : cb(result[0])
   );
 };
+
+const createProduct = (req, res) => {
+  //TODO do something with req.body
+  ({ id, title, description, product_price, seller, colors }) => {
+    let productInfo = new ProductInfo({
+      id,
+      title,
+      description,
+      product_price,
+      seller,
+      colors,
+    });
+    productInfo.save((err) => {
+      if (err) {
+        console.log(err);
+      }
+      res.json({ count: count + 1});
+    })
+}
+//refactored queryDatabase
+const getProductInfo = (req, res) => {
+  ProductInfo.find({ id: req.params.id }, (err, result) => {
+    if (err) return err;
+    res.send(result);
+  });
+}
+
+const deleteProductInfo = (req, res) => {
+  ProductInfo.deleteOne({ id: req.params.id }, function (err) {
+    if (err) console.log(`There was an issue deleting this.`);
+  });
+}
 
 const queryAllFromDatabase = (cb) => {
   var allProducts = [];
@@ -73,3 +105,10 @@ const queryAllFromDatabase = (cb) => {
 module.exports.updateDatabase = updateDatabase;
 module.exports.queryDatabase = queryDatabase;
 module.exports.queryAllFromDatabase = queryAllFromDatabase;
+module.exports = {
+  updateDatabase,
+  queryAllFromDatabase,
+  queryDatabase,
+  deleteProductInfo,
+  getProductInfo
+}

@@ -1,5 +1,5 @@
 const express = require('express');
-const queryDatabase = require('../database/index.js').queryDatabase;
+const db = require('../database/index.js');
 const queryAllFromDatabase = require('../database/index.js')
   .queryAllFromDatabase;
 const cors = require('cors');
@@ -13,17 +13,21 @@ app.use(express.static(__dirname + '/../client/dist'));
 
 app.use('/products/:id', express.static(__dirname + '/../client/dist'));
 
-app.get('/product/:id', (req, res) => {
-  queryDatabase(req.params.id, (result) => {
-    res.send(result);
-  });
-});
+// app.get('/product/:id', (req, res) => {
+//   db.queryDatabase(req.params.id, (result) => {
+//     res.send(result);
+//   });
+// });
 
-app.post();
+app.get('/product/:id', db.getProductInfo);
+//create product
+app.post('/product/post/:id', db.post);
 
-app.put();
+//update username of all photos for specific product id
+app.put('/product/update/:id', db.update);
 
-app.delete();
+//deletes product based on product id
+app.delete('/product/delete/:id', db.deleteProductInfo);
 
 app.get('/getallproducts', (req, res) => {
   queryAllFromDatabase((result, successBool) => {
