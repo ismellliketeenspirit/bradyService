@@ -19,9 +19,10 @@ app.use('/products/:id', express.static(__dirname + '/../client/dist'));
 //   });
 // });
 
+//get product based on prodcut id
 app.get('/product/:id', db.getProductInfo);
 //create product
-app.post('/product/post/:id', db.post);
+app.post('/product/post/:id', db.createProduct);
 
 //update username of all photos for specific product id
 app.put('/product/update/:id', db.update);

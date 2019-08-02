@@ -54,6 +54,7 @@ const queryDatabase = (id, cb) => {
 
 const createProduct = (req, res) => {
   //TODO do something with req.body
+  
   ({ id, title, description, product_price, seller, colors }) => {
     let productInfo = new ProductInfo({
       id,
