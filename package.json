@@ -37,6 +37,8 @@
     "nodemon": "^1.19.0",
     "path": "^0.12.7",
     "pg": "^7.11.0",
+    "pg-promise": "^9.0.0",
+    "pgp": "^0.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-test-renderer": "^16.8.6",
